@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Trading Assistant</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: #121212; color: #ffffff; padding: 10px; font-size: 12px; }
+        .header { text-align: center; font-size: 14px; font-weight: bold; color: #00e676; padding-bottom: 8px; border-bottom: 1px solid #222; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.5px; }
+        
+        /* Container Indikator */
+        .box { background: #1a1a1a; border-radius: 8px; padding: 8px 10px; border: 1px solid #2d2d2d; margin-bottom: 10px; }
+        .row { display: flex; justify-content: space-between; align-items: center; padding: 5px 0; border-bottom: 1px solid #252525; }
+        .row:last-child { border-bottom: none; }
+        .label { color: #888888; font-weight: 500; }
+        .val { font-weight: 600; color: #ffffff; }
+        
+        /* Status Warna */
+        .bullish { color: #00e676; }
+        .bearish { color: #ff5252; }
+        .neutral { color: #ffb74d; }
+
+        /* Tombol Sinyal Utama */
+        .btn-signal { width: 100%; padding: 12px; border: none; border-radius: 6px; font-size: 18px; font-weight: 800; letter-spacing: 1px; cursor: pointer; text-transform: uppercase; }
+        .btn-buy { background: #00c853; color: #ffffff; box-shadow: 0 4px 12px rgba(0,200,83,0.3); }
+        .btn-sell { background: #d50000; color: #ffffff; box-shadow: 0 4px 12px rgba(213,0,0,0.3); display: none; }
+        .btn-wait { background: #ff9100; color: #ffffff; display: none; }
+        
+        .footer-note { text-align: center; font-size: 11px; color: #666666; margin-top: 6px; }
+    </style>
+</head>
+<body>
+
+    <div class="header">AI ANALYSIS MANAGER</div>
+
+    <div class="box">
+        <div class="row"><span class="label">Tick / Bid-Ask</span><span class="val" id="bidAsk">2650.45 / 2650.60</span></div>
+        <div class="row"><span class="label">Spread</span><span class="val" id="spread">0.15 Pips</span></div>
+        <div class="row"><span class="label">Kondisi Trend</span><span class="val bullish" id="trend">Strong Uptrend</span></div>
+        <div class="row"><span class="label">Market Structure</span><span class="val" id="structure">Bullish BOS</span></div>
+        <div class="row"><span class="label">Candle Pattern</span><span class="val" id="pattern">Bullish Engulfing</span></div>
+        <div class="row"><span class="label">RSI (14)</span><span class="val" id="rsi">68.5 (Overbought)</span></div>
+        <div class="row"><span class="label">Support / Resistance</span><span class="val" id="sr">S: 2645.0 | R: 2660.0</span></div>
+    </div>
+
+    <!-- Area Keputusan AI -->
+    <button class="btn-signal btn-buy" id="btnSignal">BUY</button>
+    <div class="footer-note" id="targetInfo">Target Profit: +25 Pips | SL: -10 Pips</div>
+
+</body>
+</html>
