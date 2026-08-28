@@ -47,6 +47,40 @@
     <!-- Area Keputusan AI -->
     <button class="btn-signal btn-buy" id="btnSignal">BUY</button>
     <div class="footer-note" id="targetInfo">Target Profit: +25 Pips | SL: -10 Pips</div>
+<script>
+    async function fetchAiAnalysis() {
+        try {
+            // Ubah URL di bawah sesuai domain server cloud backend Anda
+            const response = await fetch('https://SERVER-BACKEND-ANDA.onrender.com/api/analyze');
+            const data = await response.json();
 
+            // Update Tampilan UI Floating Window secara Otomatis
+            document.getElementById('bidAsk').innerText = data.bidAsk;
+            document.getElementById('spread').innerText = data.spread;
+            document.getElementById('trend').innerText = data.trend;
+            document.getElementById('structure').innerText = data.structure;
+            document.getElementById('pattern').innerText = data.pattern;
+            document.getElementById('rsi').innerText = data.rsi;
+            document.getElementById('sr').innerText = data.sr;
+
+            // Update Sinyal Tombol (BUY / SELL / WAIT)
+            const btn = document.getElementById('btnSignal');
+            btn.innerText = data.signal;
+            btn.className = 'btn-signal ';
+            
+            if (data.signal === 'BUY') btn.classList.add('btn-buy');
+            else if (data.signal === 'SELL') btn.classList.add('btn-sell');
+            else btn.classList.add('btn-wait');
+
+            document.getElementById('targetInfo').innerText = data.targetInfo;
+        } catch (err) {
+            console.log("Memuat data...", err);
+        }
+    }
+
+    // Refresh data otomatis setiap 3 detik
+    setInterval(fetchAiAnalysis, 3000);
+    fetchAiAnalysis();
+</script>
 </body>
 </html>
